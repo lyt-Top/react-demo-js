@@ -1,0 +1,115 @@
+body,
+html,
+#root {
+    width: 100%;
+    height: 100%;
+
+    .app-warp {
+        border: 1px solid paleturquoise;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+        display: flex;
+
+        &-left {
+            width: 230px;
+            border-right: 1px solid paleturquoise;
+            box-sizing: border-box;
+            overflow: auto;
+
+            .blue {
+                color: #09F !important;
+            }
+
+            .nav-title {
+                height: 55px;
+                line-height: 55px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+
+                i:first-of-type {
+                    flex-basis: 50px;
+                }
+
+                p {
+                    flex-basis: calc(100% - 100px);
+                    text-align: left;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                i:last-of-type {
+                    flex-basis: 50px;
+                }
+
+                &:hover {
+                    background: #e5f3ff;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                height: 1px;
+                overflow: hidden;
+
+                li {
+                    height: 48px;
+                    line-height: 48px;
+                    transition: all 0.3s ease;
+                    box-sizing: border-box;
+
+                    a {
+                        display: inline-block;
+                        width: 100%;
+                        height: 100%;
+                        padding: 0 38px;
+                        box-sizing: border-box;
+                    }
+
+                    &:hover {
+                        background: #e5f3ff;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+        }
+
+        &-right {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+
+            .route-warp {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                box-sizing: border-box;
+                left: 0;
+                top: 0;
+
+                &-msg {
+                    margin: auto;
+
+                    &:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                        color: #09F;
+                    }
+                }
+            }
+        }
+    }
+}
