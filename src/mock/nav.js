@@ -4,8 +4,8 @@
 export const navData = callback => {
     callback([
         {
-            title: 'Array', isShow: true, children: [
-                { path: '/', label: 'array.length'},
+            title: 'Array', isShow: false, children: [
+                { path: '/', label: 'array.length' },
                 { path: '/array/of', label: 'array.of' }
             ]
         },

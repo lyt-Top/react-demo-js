@@ -5,7 +5,7 @@ import { navData } from '../mock/nav'
 class Nav extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { navArr: [], ulHeight: 0 }
+        this.state = { navArr: [] }
         this.ulRef = []
     }
 
@@ -13,15 +13,25 @@ class Nav extends React.Component {
         navData(navArr => {
             this.setState({ navArr })
         })
+
         setTimeout(() => {
-            this.ulRef[0].style.cssText = `height:${this.state.navArr[0].children.length * 48}px;transition: all 0.3s ease;`
+            const { navArr = [] } = this.state
+            navArr.forEach((item, index) => {
+                item.children.forEach((val) => {
+                    if (window.location.pathname === val.path) {
+                        this.ulRef[index].style.cssText = `height:${item.children.length * 48}px;transition: all 0.3s ease;`
+                    }
+                })
+            })
         }, 100)
     }
 
     onTaggleNavTitle(index) {
-        if (!this.state.navArr[index].isShow) {
-            this.ulRef[index].style.cssText = `height:${this.state.navArr[index].children.length * 48}px;transition: all 0.3s ease;`
-        }
+        const { navArr = [] } = this.state
+        navArr.forEach((val, key) => { val.isShow = false; this.ulRef[key].style.cssText = `height:1px;transition: all 0.3s ease;` })
+        navArr[index].isShow = true
+        this.ulRef[index].style.cssText = `height:${this.state.navArr[index].children.length * 48}px;transition: all 0.3s ease;`
+        this.setState({ navArr })
     }
 
     render() {
@@ -36,7 +46,7 @@ class Nav extends React.Component {
                                     <p>{val.title}</p>
                                     <i>c</i>
                                 </div>
-                                <ul style={{ height: val.isShow ? this.state.ulHeight : '' }} ref={ulRef => this.ulRef[key] = ulRef}>
+                                <ul ref={ulRef => this.ulRef[key] = ulRef}>
                                     {
                                         val.children.map((v, k) => {
                                             return (
