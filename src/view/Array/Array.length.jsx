@@ -6,7 +6,7 @@ class Home extends React.Component {
     }
 
     onOpenReact() {
-        window.open('https://react-1251415695.cos-website.ap-chengdu.myqcloud.com/')
+        window.open('https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array')
     }
 
     render() {
