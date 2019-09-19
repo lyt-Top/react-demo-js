@@ -10,27 +10,37 @@ class Nav extends React.Component {
     }
 
     componentDidMount() {
-        navData(navArr => {
-            this.setState({ navArr })
-        })
-
+        navData(navArr => { this.setState({ navArr }) })
         setTimeout(() => {
             const { navArr = [] } = this.state
             navArr.forEach((item, index) => {
                 item.children.forEach((val) => {
                     if (window.location.pathname === val.path) {
+                        item.isShow = true
                         this.ulRef[index].style.cssText = `height:${item.children.length * 48}px;transition: all 0.3s ease;`
                     }
                 })
             })
+            console.log(navArr)
         }, 100)
     }
 
+    // 是否只保持一个子菜单的展开 uniqueopened，默认为不开启 `false`
     onTaggleNavTitle(index) {
         const { navArr = [] } = this.state
-        navArr.forEach((val, key) => { val.isShow = false; this.ulRef[key].style.cssText = `height:1px;transition: all 0.3s ease;` })
-        navArr[index].isShow = true
-        this.ulRef[index].style.cssText = `height:${this.state.navArr[index].children.length * 48}px;transition: all 0.3s ease;`
+        const ulMaxHeight = `height:${navArr[index].children.length * 48}px;transition: all 0.3s ease;`
+        const ulMinHeight = `height:1px;transition: all 0.3s ease;`
+        // 不保持一个子菜单的展开
+        if (this.props.uniqueopened === 'false') {
+            navArr[index].isShow = !navArr[index].isShow
+            navArr[index].isShow ? this.ulRef[index].style.cssText = ulMaxHeight : this.ulRef[index].style.cssText = ulMinHeight
+        }
+        // 只保持一个子菜单的展开（手风琴效果）
+        else {
+            navArr.forEach((val, key) => { val.isShow = false; this.ulRef[key].style.cssText = ulMinHeight })
+            navArr[index].isShow = true
+            this.ulRef[index].style.cssText = ulMaxHeight
+        }
         this.setState({ navArr })
     }
 
@@ -44,7 +54,7 @@ class Nav extends React.Component {
                                 <div className="nav-title" onClick={e => this.onTaggleNavTitle(key)}>
                                     <i>i</i>
                                     <p>{val.title}</p>
-                                    <i>c</i>
+                                    <i className={val.isShow ? 'rotate' : ''}>c</i>
                                 </div>
                                 <ul ref={ulRef => this.ulRef[key] = ulRef}>
                                     {

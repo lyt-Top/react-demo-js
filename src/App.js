@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div className="app-warp">
         <BrowserRouter>
-          <Nav className="app-warp-left"></Nav>
+          <Nav className="app-warp-left" uniqueopened="false"></Nav>
           <Routes className="app-warp-right"></Routes>
         </BrowserRouter>
       </div>
