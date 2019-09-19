@@ -6,6 +6,9 @@ export const navData = callback => {
         {
             title: 'Array', isShow: false, icon: 'icon-yuyin', children: [
                 { path: '/', label: 'array.length' },
+                { path: '/array/prototype', label: 'array.prototype' },
+                { path: '/array/from', label: 'array.from' },
+                { path: '/array/isArray', label: 'array.isArray' },
                 { path: '/array/of', label: 'array.of' }
             ]
         },
