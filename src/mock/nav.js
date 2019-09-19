@@ -4,13 +4,13 @@
 export const navData = callback => {
     callback([
         {
-            title: 'Array', isShow: false, children: [
+            title: 'Array', isShow: false, icon: 'icon-yuyin', children: [
                 { path: '/', label: 'array.length' },
                 { path: '/array/of', label: 'array.of' }
             ]
         },
         {
-            title: 'Object', isShow: false, children: [
+            title: 'Object', isShow: false, icon: 'icon-shoucang', children: [
                 { path: '/object/keys', label: 'object.keys' },
                 { path: '/object/values', label: 'object.values' }
             ]

@@ -1,11 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { navData } from '../mock/nav'
+import PubSub from 'pubsub-js'
 
 class Nav extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { navArr: [] }
+        this.state = { navArr: [], icon: 'icon-youjiantou1 iconfont' }
         this.ulRef = []
     }
 
@@ -14,14 +15,15 @@ class Nav extends React.Component {
         setTimeout(() => {
             const { navArr = [] } = this.state
             navArr.forEach((item, index) => {
-                item.children.forEach((val) => {
+                item.children.forEach((val, key) => {
                     if (window.location.pathname === val.path) {
-                        item.isShow = true
+                        navArr[index].isShow = true
                         this.ulRef[index].style.cssText = `height:${item.children.length * 48}px;transition: all 0.3s ease;`
+                        PubSub.publish('breadcrumb', { title: item.title, label: item.children[key] }) // 发送消息
                     }
                 })
             })
-            console.log(navArr)
+            this.setState({ navArr })
         }, 100)
     }
 
@@ -44,7 +46,13 @@ class Nav extends React.Component {
         this.setState({ navArr })
     }
 
+    // 右侧顶部 Breadcrumb 面包屑数据
+    onNavLinkClick(val, k) {
+        PubSub.publish('breadcrumb', { title: val.title, label: val.children[k] }) // 发送消息
+    }
+
     render() {
+        const { icon } = this.state
         return (
             <div {...this.props}>
                 {
@@ -52,16 +60,18 @@ class Nav extends React.Component {
                         return (
                             <div key={key}>
                                 <div className="nav-title" onClick={e => this.onTaggleNavTitle(key)}>
-                                    <i>i</i>
+                                    <i className={'iconfont ' + val.icon}></i>
                                     <p>{val.title}</p>
-                                    <i className={val.isShow ? 'rotate' : ''}>c</i>
+                                    <div className="icon">
+                                        <span className={val.isShow ? 'rotate ' + icon : icon}></span>
+                                    </div>
                                 </div>
                                 <ul ref={ulRef => this.ulRef[key] = ulRef}>
                                     {
                                         val.children.map((v, k) => {
                                             return (
-                                                <li key={k}>
-                                                    <NavLink to={v.path} exact activeClassName='blue'> {v.label}</NavLink>
+                                                <li key={k} onClick={e => this.onNavLinkClick(val, k)}>
+                                                    <NavLink to={v.path} exact activeClassName='blue'>{v.label}</NavLink>
                                                 </li>
                                             )
                                         })

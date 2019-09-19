@@ -1,3 +1,7 @@
+#nprogress .spinner {
+    display: none;
+}
+
 body,
 html,
 #root {
@@ -15,21 +19,25 @@ html,
         border: 1px solid paleturquoise;
         width: 100%;
         height: 100%;
-        overflow: auto;
         box-sizing: border-box;
         display: flex;
+        overflow: hidden;
 
         &-left {
             width: 230px;
-            border-right: 1px solid paleturquoise;
+            border-right: 1px solid #e6e6e6;
             box-sizing: border-box;
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             .blue {
                 color: #09F !important;
+                background: #e5f3ff !important;
+                transition: all 0.3s ease;
             }
 
             .nav-title {
+                width: 100%;
                 height: 55px;
                 line-height: 55px;
                 display: flex;
@@ -39,29 +47,49 @@ html,
                 transition: all 0.3s ease;
 
                 i:first-of-type {
+                    height: 100%;
                     flex-basis: 50px;
+                    box-sizing: border-box;
+                    color: #909399;
+                    vertical-align: middle;
+                    font-size: 14px;
                 }
 
                 p {
+                    height: 100%;
                     flex-basis: calc(100% - 100px);
                     text-align: left;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
+                    box-sizing: border-box;
                 }
 
-                i:last-of-type {
+                .icon {
+                    height: 100%;
                     flex-basis: 50px;
+                    box-sizing: border-box;
+
+                    span {
+                        font-size: 12px;
+                        color: #909399;
+                        display: inline-block;
+                        transition: all 0.3s ease;
+                        transform: rotate(90deg);
+                    }
+
+                    .rotate {
+                        transform: rotate(270deg);
+                        transition: all 0.3s ease;
+                        transform-origin: center;
+                        box-sizing: border-box;
+                    }
                 }
 
                 &:hover {
                     background: #e5f3ff;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                }
-
-                .rotate {
-                    // border: 1px solid red;
                 }
             }
 
@@ -97,27 +125,169 @@ html,
 
         &-right {
             flex: 1;
-            position: relative;
             width: 100%;
             height: 100%;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
 
-            .route-warp {
-                display: flex;
-                width: 100%;
-                height: 100%;
-                position: absolute;
+            .route-top {
+                height: 50px;
+                line-height: 50px;
+                padding: 0 15px;
                 box-sizing: border-box;
-                left: 0;
-                top: 0;
+                border-bottom: 1px solid #e6e6e6;
+                display: flex;
 
-                &-msg {
-                    margin: auto;
+                .bread-left {
+                    flex: 1;
+                    color: #606266;
+                    font-size: 14px;
 
-                    &:hover {
-                        text-decoration: underline;
+                    span {
+                        margin: 0 9px;
+                        color: #c0c4cc;
+                    }
+                }
+
+                .bread-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    transition: all 0.3s ease;
+                    position: relative;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 100%;
+                        box-sizing: border-box;
+                    }
+
+                    .bread-name {
+                        font-size: 14px;
+                        color: #888;
+                        margin-left: 5px;
                         cursor: pointer;
+                    }
+
+                    i {
+                        font-size: 12px;
+                        color: #909399;
+                        display: inline-block;
+                        transform: rotate(90deg);
+                        margin-left: 5px;
+                    }
+
+                    &:hover .bread-name,
+                    &:hover i {
                         color: #09F;
+                        transition: all 0.3s ease;
+                    }
+
+                    &:hover .user-dropdown {
+                        top: 48px;
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all 0.3s ease;
+
+                        &::after {
+                            content: "";
+                            visibility: visible;
+                            opacity: 1;
+                            transition: all 0.4s linear;
+                        }
+                    }
+
+                    .user-dropdown {
+                        transition: all 0.3s ease;
+                        border: 1px solid #ebeef5;
+                        position: absolute;
+                        top: 100px;
+                        right: 0;
+                        width: 130px;
+                        height: auto;
+                        background: white;
+                        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                        z-index: 2019;
+                        visibility: hidden;
+                        opacity: 0;
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: -5px;
+                            left: 50%;
+                            transform: translateX(-50%) rotate(45deg);
+                            width: 10px;
+                            height: 10px;
+                            background: white;
+                            z-index: 1;
+                            border-top: 1px solid #ebeef5;
+                            border-left: 1px solid #ebeef5;
+                            border-top-left-radius: 2px;
+                            visibility: hidden;
+                            opacity: 0;
+                            transition: all 0.4s linear;
+                        }
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 10px 0;
+
+                            li {
+                                height: 35px;
+                                line-height: 35px;
+                                cursor: pointer;
+                                font-size: 14px;
+
+                                a {
+                                    width: 100%;
+                                    display: inline-block;
+                                    padding: 0 20px;
+                                    box-sizing: border-box;
+                                    text-decoration: none;
+
+                                    &:hover {
+                                        background: #e5f3ff;
+                                        color: #1989fa;
+                                    }
+                                }
+
+                                &:last-of-type {
+                                    border-top: 1px solid #ebeef5;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .route-content {
+                flex: 1;
+                box-sizing: border-box;
+                position: relative;
+
+                .route-warp {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    box-sizing: border-box;
+                    left: 0;
+                    top: 0;
+
+                    &-msg {
+                        margin: auto;
+
+                        &:hover {
+                            text-decoration: underline;
+                            cursor: pointer;
+                            color: #09F;
+                        }
                     }
                 }
             }

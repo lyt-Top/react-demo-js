@@ -135,6 +135,7 @@
     ]
   },
   "devDependencies": {
+    "pubsub-js": "^1.7.0",
     "sass-loader": "^7.2.0"
   }
 }
