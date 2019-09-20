@@ -12,7 +12,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="route-warp">
-                <div className="route-warp-msg" onClick={this.onOpenReact}>Array.length</div>
+
             </div>
         )
     }

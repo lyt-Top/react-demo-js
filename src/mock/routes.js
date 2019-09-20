@@ -13,13 +13,38 @@ import ObjectValues from '../view/Object/Object.values'
  * @param {*} callback 路由配置（视图）
  */
 export const routeData = callback => { 
-    callback([
-        { path: '/', component: ArrayLength },
-        { path: '/array/prototype', component: ArrayPrototype },
-        { path: '/array/from', component: ArrayFrom },
-        { path: '/array/isArray', component: ArrayIsArray },
-        { path: '/array/of', component: ArrayOf },
-        { path: '/object/keys', component: ObjectKeys },
-        { path: '/object/values', component: ObjectValues }
-    ])
+    const routerConfig = [
+        // 数组
+        {
+            path: '/',
+            component: ArrayLength
+        },
+        {
+            path: '/array/prototype',
+            component: ArrayPrototype
+        },
+        {
+            path: '/array/from',
+            component: ArrayFrom
+        },
+        {
+            path: '/array/isArray',
+            component: ArrayIsArray
+        },
+        {
+            path: '/array/of',
+            component: ArrayOf
+        },
+        
+        // 对象
+        {
+            path: '/object/keys',
+            component: ObjectKeys
+        },
+        {
+            path: '/object/values',
+            component: ObjectValues
+        }
+    ]
+    callback(routerConfig)
 }
