@@ -52,7 +52,7 @@ class Login extends React.Component {
             <div className="login-watp">
                 <div className="login-center-box">
                     <i className="login-icon iconfont icon-danren"></i>
-                    <div className="login-user-name">帅比李狗蛋</div>
+                    <div className="login-user-name">Shuai Bi Li Dog Egg</div>
                     <div className="login-input-warp">
                         {
                             !isError ? (
