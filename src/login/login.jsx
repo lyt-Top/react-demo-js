@@ -56,7 +56,6 @@ class Login extends React.Component {
                     <div className="login-input-warp">
                         {
                             !isError ? (
-
                                 <div className="login-input">
                                     <input className="login-input-left" type="password" placeholder="密码" maxLength="18" ref={this.input} />
                                     <div className="login-input-right" onClick={this.onSubmitClick}>
