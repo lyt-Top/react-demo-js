@@ -11,6 +11,7 @@ class Nav extends React.Component {
     }
 
     componentDidMount() {
+        if (window.location.pathname === '/login') return
         navData(navArr => { this.setState({ navArr }) })
         setTimeout(() => {
             const { navArr = [] } = this.state

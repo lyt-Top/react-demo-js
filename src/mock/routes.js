@@ -1,3 +1,6 @@
+// login
+import Login from '../login/login'
+
 // Array
 import ArrayLength from '../view/Array/Array.length'
 import ArrayPrototype from '../view/Array/Array.prototype'
@@ -14,9 +17,15 @@ import ObjectValues from '../view/Object/Object.values'
  */
 export const routeData = callback => { 
     const routerConfig = [
+        // 登录
+        {
+            path: '/login',
+            component: Login
+        },
+
         // 数组
         {
-            path: '/',
+            path: '/array/length',
             component: ArrayLength
         },
         {

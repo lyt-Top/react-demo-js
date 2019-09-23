@@ -7,7 +7,7 @@ export const navData = callback => {
             title: 'Array', isShow: false, icon: 'icon-yuyin',
             children: [
                 {
-                    path: '/',
+                    path: '/array/length',
                     label: 'array.length'
                 },
                 {

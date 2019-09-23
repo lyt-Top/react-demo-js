@@ -18,7 +18,7 @@ export default class Bread extends React.Component {
                 { label: 'react', path: 'https://react-1251415695.cos-website.ap-chengdu.myqcloud.com/', target: '_blank' },
                 { label: 'angular', path: 'https://angular.cn/', target: '_blank' },
                 { label: 'node', path: 'http://nodejs.cn/', target: '_blank' },
-                { label: 'refresh', path: '', target: '_self' }
+                { label: 'logout', path: '/login', target: '_self' }
             ]
         }
     }
